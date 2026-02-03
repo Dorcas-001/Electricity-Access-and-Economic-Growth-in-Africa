@@ -1,50 +1,116 @@
-# Modeling Inflation Dynamics and Forecasting in Selected African Economies
-
+# Electricity Access and Economic Growth in Africa
 
 ## Project Overview
-This project studies inflation dynamics and short-term inflation forecasting in selected African economies, with **Cameroon as the baseline country**. Using annual inflation time-series data and ARIMA models, the analysis examines inflation persistence, volatility, and medium-term forecasts, and compares Cameroon’s inflation behavior with Ghana, Nigeria, and Côte d’Ivoire.
+
+This project analyzes the relationship between electricity access and economic growth in selected West and Central African countries, with a specific focus on **Cameroon as the baseline country**. Using panel data from 1990 to 2023, the study examines whether higher electricity access is associated with higher GDP per capita and how robust this relationship remains under increasingly rigorous econometric specifications.
+
+
 
 
 ## Research Question
-How do inflation dynamics differ across selected African economies, and what do short-term forecasts reveal about Cameroon’s inflation trajectory relative to its peers?
+
+**How is access to electricity associated with economic growth (GDP per capita) in selected African countries, and how robust is this relationship after controlling for country-specific and time-specific factors?**
+
+
 
 ## Data Sources
-- World Bank – World Development Indicators (WDI)
-  - Annual inflation rate (%)
 
-### Countries
+All data are publicly available and obtained from reputable international institutions:
+
+- **World Bank – World Development Indicators (WDI)**
+  - GDP per capita (constant prices)
+  - Electricity access (% of population)
+
+- **International Energy Agency (IEA)**
+  - Used for contextual background on electricity access and energy policy
+
+### Countries Included
 - Cameroon (baseline)
+- Côte d’Ivoire
 - Ghana
 - Nigeria
-- Côte d’Ivoire
 
-### Frequency
-- Annual data (country-specific coverage)
+### Time Period
+- 1990–2023 (annual data)
+
+### Sample Size
+- 128 country–year observations
+
+
 
 ## Variables
-- `inflation`: Annual inflation rate (%)
-- Lagged inflation terms (AR components)
-- Lagged forecast errors (MA components)
+
+### Dependent Variables
+- `gdp_pc`: GDP per capita
+- `log_gdp_pc`: Natural logarithm of GDP per capita (final model)
+
+### Independent Variable
+- `elec_access`: Electricity access (% of population)
+
+### Controls
+- Country fixed effects
+- Year fixed effects
+
+
 
 ## Methodology
-1. Data cleaning and restructuring into country-level time series  
-2. Visualization of historical inflation trends  
-3. Stationarity testing using the Augmented Dickey–Fuller (ADF) test  
-4. ARIMA model selection using AIC  
-5. Residual diagnostics and model validation  
-6. Five-year-ahead inflation forecasting  
 
-## Key Findings
-- Cameroon’s inflation is stationary and well modeled by ARIMA(1,0,0), indicating moderate persistence.
-- Ghana’s inflation is non-stationary and more volatile, requiring differencing and a higher-order ARIMA model.
-- Nigeria shows persistent inflation dynamics with significant AR and MA components.
-- Côte d’Ivoire exhibits relatively stable inflation behavior.
-- Inflation forecasts differ substantially across countries, highlighting strong country-specific dynamics.
+The empirical analysis follows a stepwise modeling approach:
+
+1. **Descriptive statistics and correlation analysis**
+   - Examines basic distributions and associations.
+
+2. **Simple OLS regression**
+   - Estimates the unconditional relationship between electricity access and GDP per capita.
+
+3. **OLS with country fixed effects**
+   - Controls for time-invariant country characteristics.
+
+4. **OLS with country and year fixed effects**
+   - Accounts for common macroeconomic and regional time shocks.
+
+5. **Clustered standard errors (by country)**
+   - Corrects for serial correlation and heteroskedasticity in panel data.
+
+6. **Log-transformed GDP per capita (final specification)**
+   - Enables percentage-based interpretation and reduces sensitivity to outliers.
+
+
+
+## Key Results
+
+- The correlation coefficient between electricity access and GDP per capita is **positive and strong (ρ ≈ 0.67)**.
+- In the final log-linear model:
+  - A **1 percentage point increase in electricity access** is associated with an **approximately 2.8% increase in GDP per capita**.
+- Country fixed effects (baseline: Cameroon):
+  - **Ghana:** ≈ 44% lower GDP per capita (statistically significant)
+  - **Nigeria:** ≈ 28.6% higher GDP per capita (statistically significant)
+  - **Côte d’Ivoire:** No statistically significant difference
+
+
+## Visual Outputs
+
+The project includes the following figures:
+
+1. Scatter plot of electricity access vs. log GDP per capita  
+2. Time trends of electricity access and GDP per capita by country  
+3. Histogram of regression residuals  
+
+All figures are labeled, captioned, and referenced in the report.
+
+
+## Interpretation and Limitations
+
+The results indicate a robust conditional association between electricity access and economic growth. 
 
 ## Policy Relevance
-- Supports inflation monitoring using statistical forecasts  
-- Highlights the need for country-specific macroeconomic policies  
-- Provides benchmarking insights for Cameroon relative to regional peers  
+
+Despite these limitations, the consistency and magnitude of the estimated relationship support policy strategies that prioritize:
+
+- Expansion of electricity access
+- Improvements in power reliability
+- Integration of energy investments with broader economic development reforms
+
 
 ## Repository Structure
 - `data/` – inflation datasets  
